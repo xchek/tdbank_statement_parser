@@ -5,11 +5,45 @@ Acquire TD Bank statements (PDF) manually or with the automated helper script.
 
 
 ```bash
-python tdbank_statement_parser/dl_statements.py
+$ python tdbank_statement_parser/dl_statements.py --help
+usage: dl_statements.py [-h] [output_directory]
+
+TD Bank account statement downloader.
+
+positional arguments:
+  output_directory  Specify the output directory (defaults to ./data/ otherwise)
+
+options:
+  -h, --help        show this help message and exit
 ```
 
 
-`dl_statements.py` waits 4 minutes on the login page, allowing time for credentials to be manually entered and for 2FA. When redirected to the dashboard, the script takes over and begins downloading all statements for all accounts.
+`dl_statements.py` waits 4 minutes on the login page, allowing time for credentials to be manually entered and for 2FA. When redirected to the dashboard, the script takes over and begins downloading all statements for all accounts. Output directory sample shown below.
+
+```bash
+.
+└── data
+    ├── audit
+    ├── TD_CONVENIENCE_CHECKING_x5555
+    │   ├── 2023
+    │   │   ├── View PDF Statement_2023-10-11.pdf
+    │   │   ├── View PDF Statement_2023-11-11.pdf
+    │   │   └── ...
+    │   └── 2024
+    │       ├── View PDF Statement_2024-03-11.pdf
+    │       ├── View PDF Statement_2024-04-11.pdf
+    │       └── ...
+    ├── TD_CONVENIENCE_CHECKING_x6666
+    │   └── ...
+    ├── TD_Cash_x9999
+    │   └── ...
+    ├── TD_SIMPLE_SAVINGS_x1010
+    │   └── ...
+    ├── TD_SIMPLE_SAVINGS_x5555
+    │   └── ...
+    └── TD_SIMPLE_SAVINGS_x8888
+        └── ...
+```
 
 
 Pass a list of paths to the `main.py` script. The script outputs parsed JSON blobs to stdout and logs status messages to stderr.
